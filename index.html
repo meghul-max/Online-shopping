@@ -94,7 +94,33 @@
         .modal-footer .add-to-cart-btn:hover {
             background-color: #0056b3;
         }
-       
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .items .item {
+                width: 45%;
+            }
+            nav a {
+                font-size: 18px;
+                width: auto;
+            }
+            .add-to-cart-btn {
+                width: 80%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .items .item {
+                width: 90%;
+            }
+            nav a {
+                font-size: 16px;
+                width: auto;
+            }
+            .add-to-cart-btn {
+                width: 80%;
+            }
+        }
     </style>
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script>
@@ -118,29 +144,30 @@
                 let productName = $(this).find("h3").text();
                 let productPrice = $(this).find("p").text();
                 let productImage = $(this).find("img").attr("src");
-	 let productDescription = $(this).find("h3").data("description");
+                let productDescription = $(this).find("h3").data("description");
 
                 $("#product-name").text(productName);
                 $("#product-price").text(productPrice);
                 $("#product-image").attr("src", productImage);
 
-	 $("#product-description").text(productDescription);
+                $("#product-description").text(productDescription);
 
                 $("#productModal").modal("show");
             });
-	$("#category-filter").change(function () {
-        let selectedCategory = $(this).val();
-        
-        $(".item").each(function () {
-            let itemCategory = $(this).find("h3").data("category");
 
-            if (selectedCategory === "all" || itemCategory === selectedCategory) {
-                $(this).show();
-            } else {
-                $(this).hide();
-            }
-        });
-    });
+            $("#category-filter").change(function () {
+                let selectedCategory = $(this).val();
+        
+                $(".item").each(function () {
+                    let itemCategory = $(this).find("h3").data("category");
+
+                    if (selectedCategory === "all" || itemCategory === selectedCategory) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            });
         });
     </script>
 </head>
@@ -188,7 +215,7 @@
     </button>
 </div>
 <div class="items">
-    <div class="item">
+<div class="item">
         <img src="cloth3.jpg">
         <h3 data-category="clothing" data-description="A premium shirt for every occasion, made with high-quality fabric.">bhAAi Shirt</h3>
         <p>&#8377; 100000</p>
@@ -333,6 +360,8 @@
     </div>
 
 </div>
+</div>
+<!-- Modal for product details -->
 <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -365,13 +394,11 @@
         </div>
 
       </div>
- <div class="modal-footer">
-
+      <div class="modal-footer">
         <button type="button" class="btn btn-primary add-to-cart-btn">Make payment</button>
       </div>
     </div>
   </div>
 </div>
-
 </body>
 </html>
